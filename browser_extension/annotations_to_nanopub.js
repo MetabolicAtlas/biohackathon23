@@ -7,6 +7,7 @@
 // @match        https://europepmc.org/article/*
 // @match        https://www.ncbi.nlm.nih.gov/pubmed/*
 // @match        https://www.nature.com/articles/*
+// @match        https://www.science.org/doi/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=nanopub.net
 // @require      https://unpkg.com/axios@1.6.0/dist/axios.min.js
 // @grant        GM_openInTab
@@ -15,7 +16,8 @@
 // ==/UserScript==
 (async function() {
 
-    const AUTH_TOKEN = "Bearer a1aaab0e-971a-40fe-b7d7-24b40b35a45a";
+    /* this is a hard-coded token to circumvent authentication and Nanopub key generation */
+    const AUTH_TOKEN = "Bearer aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa";
 
     /* Add CSS style */
     var style = document.createElement('style');
@@ -47,6 +49,7 @@
 
       #nanopub-elixir-biohackaton-project26-cart h1 {
             font-size: 2rem;
+            font-familly: arial;
             margin-bottom: 1rem;
             font: sans;
             color: black;
@@ -202,6 +205,8 @@
     }
 
     function publishNanoPub(model, authtoken) {
+        /* TODO: Manage ORCID OAuth 2
+         */
         const instance = axios.create({
             headers: {
                 'accept': 'application/json',
@@ -215,7 +220,9 @@
               GM_openInTab(url, false);
             })
             .catch(function (error) {
+              // Add user feed back
               console.log(error);
+              alert(error);
             });
     }
 
@@ -238,7 +245,6 @@
         btnCreate.style.alignItems = "center";
         btnCreate.style.justifyContent = "center";
         btnCreate.style.height = "2.5rem";
-        // btnCreate.style.boxShadow = "2px 2px 5px black";
         btnCreate.style.background = "#99ccff";
         btnCreate.style.padding = "0.5rem 1rem";
         btnCreate.style.margin = "0 0.5rem";
@@ -307,13 +313,16 @@
         render() {
             const storage = read_storage();
             const currentUrl = getCurrentUrl();
-            // console.log(JSON.stringify(read_storage().toJSON()));
+
+            // Erase existing content
             this.element.innerHTML = "";
 
+            // Add title
             const title = document.createElement("h1");
             title.innerHTML = "Create NanoPub";
             this.element.appendChild(title);
 
+            // Add quotes
             const cartQuoteList = storage.quote_list.map(q => new CartQuote(q));
             let currentSource = null;
             for (const cartQuote of cartQuoteList) {
@@ -329,6 +338,7 @@
                 this.element.appendChild(cartQuote.element);
             }
 
+            // Add assertion input field
             const assertionInput = document.createElement("input");
             assertionInput.value = storage.assertion;
             assertionInput.className = "assertion";
@@ -340,6 +350,7 @@
             });
             this.element.appendChild(assertionInput);
 
+            // Add Create NanoPub button
             const btnCreate = createButton("Create NanoPub");
             function openCreateNanoPub() {
                 publishNanoPub(read_storage(), AUTH_TOKEN);
@@ -347,6 +358,7 @@
             btnCreate.onclick = openCreateNanoPub;
             this.element.appendChild(btnCreate);
 
+            // Add Cancel button
             const btnCancel = createButton("Cancel");
             function cancelNanoPub() {
                 const storage = read_storage();
@@ -376,11 +388,20 @@
         return document.querySelector('.doi a').href;
     }
 
+    function getdoi_scienceorg() {
+        return document.querySelector('.doi a').href;
+    }
+
+    function getdoi_nature() {
+        return document.querySelector('.c-bibliographic-information__value').href;
+    }
+
     //
     const URL_MAPPING = {
         "https://europepmc.org/article/PMC/": getdoi_europepmc,
         "https://europepmc.org/abstract/MED/": getdoi_europepmc,
         "https://www.ncbi.nlm.nih.gov/pubmed/": getdoi_ncbi,
+        "https://www.science.org/doi/": getdoi_scienceorg,
     }
 
     const btnAddQuote = createButton("➕ Add Quote");
