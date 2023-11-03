@@ -16,6 +16,7 @@
 // ==/UserScript==
 (async function() {
 
+    /* this is a hard-coded token to circumvent authentication and Nanopub key generation */
     const AUTH_TOKEN = "Bearer aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa";
 
     /* Add CSS style */
