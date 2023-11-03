@@ -10,11 +10,11 @@
 
 ### Installation
 
-#### Elixir 2023 BioHackaton version
+#### ELIXIR 2023 BioHackathon version
 
 ⚠️ Authentification was not implemented during the hackathon, so the installation procedure is cumbersome.
 
-Go to the [next section](#user-content-once-orcid-login-is-properly-supported) if you just want to give try: you won't be able to publish the NanoPub, but all the steps before work.
+Go to the [next section](#user-content-once-orcid-login-is-properly-supported) if you just want to give it try: you won't be able to publish the NanoPub, but all the steps before work.
 
 Installation steps:
 * Install [Tampermonkey](https://www.tampermonkey.net/) browser extension.
@@ -32,7 +32,7 @@ Then to create a NanoPub you have to be logged in, which was not implemented dur
 
 The token is going to expire in about 30 minutes, so you have to repeat the above procedure except the call to `/generate-keys`.
 
-#### Once ORCID login is properly supported
+#### Once ORCID login will be supported
 
 * Install [Tampermonkey](https://www.tampermonkey.net/) browser extension.
 * Follow this link <https://raw.githubusercontent.com/MetabolicAtlas/biohackathon23/main/browser_extension/annotations_to_nanopub.js>
@@ -49,6 +49,7 @@ On:
 * https://europepmc.org/article/
 * https://www.ncbi.nlm.nih.gov/pubmed/
 * https://www.nature.com/articles/
+* https://www.science.org/doi/
 
 When you select some text, a button appears:
 
