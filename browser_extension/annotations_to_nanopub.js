@@ -363,6 +363,7 @@
             function cancelNanoPub() {
                 const storage = read_storage();
                 storage.removeAllQuotes();
+                storage.assertion = "";
                 write_storage(storage);
                 CART.hide();
             }
