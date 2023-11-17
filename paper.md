@@ -1,15 +1,40 @@
 ---
-title: 'BioHackEU23 report: Project 26: Literature Biocuration Practices and Guidelines'
-title_short: 'BioHackEU23 #26: unknown chemical substances'
+title: 'BioHackEU23 report: Literature Biocuration Practices and Guidelines'
+title_short: 'BioHackEU23 #26: Granular Biocuration'
 tags:
-  - cheminformatics
+  - biocuration
   - PubChem
-authors: # all people in the google doc + Vincent
-  - name: First Author
-    affiliation: 1
-  - name: Last Author
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
+authors: # Ulrike Wittig, Online: Patrick Ruch, Egon Willighagen
+  - name: Mihail Anton
+    orcid: Anton 0000-0002-7753-9042
+    affiliation:
+  - name: Adel Bouhraoua
+    orcid: 
+    affiliation:
+  - name: Vincent Emonet
+    orcid: 
+    affiliation: 
+  - name: Alexandre Flament
+    orcid: 
+    affiliation: 
+  - name: Matt Jeffryes
+    orcid: 
+    affiliation: 
+  - name: Toshiaki Katayama
+    orcid: 
+    affiliation: 
+  - name: Luana Licata
+    orcid: 
+    affiliation: 
+  - name: Patrick Ruch
+    orcid:
+    affiliation: 
+  - name: Egon Willighagen
+    orcid: 
+    affiliation: 
+  - name: Ulrike Wittig
+    orcid: 
+    affiliation: 
 affiliations:
   - name: First Affiliation
     index: 1
@@ -39,26 +64,43 @@ Biocuration involves the synthesis, integration, and standardization of data fro
 
 The aim of this paper is to delineate the advantages of biocurators referring to precise sentence-level evidence within articles rather than broadly citing entire articles. We postulate this will enhance accuracy, verifiability, updatability, findability, efficiency, text mining capability, and downstream usage. Here we review the current state of biocuration evidencing approaches and present the case for transitioning to more targeted, sentence-level referencing. We also quantify potential impacts this could have on biocuration accuracy, speed, and cost. Ultimately, we demonstrate the significant advantages sentence-level biocuration evidencing provides and propose solutions to overcome existing barriers to its widespread adoption. This will assist biocurators in maximizing the reliability and utility of the structured knowledge they generate.
 
-# Landscape analysis
+# Landscape analysis of literature biocuration
 
-Standards
-* [BioC](https://bioc.sourceforge.net/)
-* [JATS](https://www.niso.org/standards-committees/jats)
-* [WADM](https://www.w3.org/TR/annotation-model/)
+## Standards
 
-Resources and tools
-* [PubAnnotations](https://pubannotation.org/)
-* [SIBiLS](https://sibils.text-analytics.ch/)
-* [BioC API for PMC](
-https://www.ncbi.nlm.nih.gov/research/bionlp/APIs/BioC-PMC/) and [SimpleBioC](https://github.com/dongseop/simple_bioc)
+#### BioC 
+
+BioC aims to enable interoperability between biomedical natural language processing tools and text mining systems [@citation:sourceforgeBioCProject]. The format consists of two components - passages and annotations. Passages represent original texts, while annotations capture meta-information about entities or relations within texts. BioC adopts a minimalist approach, only including core elements required for basic text processing. The simple generic structure allows BioC to represent annotations from most biomedical text mining systems. BioC annotations can link to ontologies and terminologies via identifiers. While this format is originally XML-based, JSON implemenations exist, see [BioC-JSON](https://github.com/ncbi-nlp/BioC-JSON), [BioC API for PMC](
+https://www.ncbi.nlm.nih.gov/research/bionlp/APIs/BioC-PMC/) and [SimpleBioC](https://github.com/dongseop/simple_bioc). Overall, BioC provides a lightweight interchange format to facilitate integration of heterogeneous biomedical text processing components.
+
+#### JATS
+The Journal Article Tag Suite ([JATS](https://www.niso.org/standards-committees/jats)) is another XML format used for representing scholarly journal articles. JATS was co-developed by National Center for Biotechnology Information (NCBI) of the National Library of Medicine (NLM) as an archiving and interchange standard for scientific literature. It provides a set of XML elements and attributes for describing all aspects of journal articles, including text, images, and supplemental data. A key goal of JATS is to facilitate digital preservation, open access, and semantic enrichment of journal literature. JATS has been widely adopted by publishers, archives, and repositories as a journal format. Shortly, JATS serves as a comprehensive model for encoding, managing, and publishing journal articles using XML.
+
+#### WADM
+[WADM](https://www.w3.org/TR/annotation-model/)
+
+## Resources and tools
+
+#### SIBiLS
+
+[SIBiLS](https://sibils.text-analytics.ch/) offers customizable RESTful search interfaces built on Elasticsearch. It enriches literature results with biomedical concepts from ontologies like MeSH automatically mapped to text via named entity recognition. This allows literature searches to incorporate semantic knowledge in the biomedical domain. Users can configure search engines for different use cases by selecting ontologies, defining keywords, and customizing mappings. The services support features like autocomplete, highlighted snippets, and contextual recommendations. Overall, SIBiLS demonstrates the value of semantically enriched literature search through automatically linking unstructured text with formal conceptual knowledge. This improves discovery of relevant biomedical publications by overcoming limitations of keyword searches lacking domain context.
+
+#### PubAnnotation
+
+[PubAnnotation](https://pubannotation.org/) functions as a repository of annotations, and the coordinates of these annotations are automatically aligned with the canonical text, enabling users to share, search, and compare annotations. It also offers a visual editor for creating annotations and REST APIs for retrieving annotations in a JSON format. The service assigns a globally unique identifier in the form of a URI to any text segment within the literature on PubMed or PMC. This makes it suitable for use in RDF, allowing users to precisely reference specific regions in a paper for annotation.  Annotations in the BioC format can be converted to PubAnnotation's JSON using the [SimpleBioC](https://github.com/dongseop/simple_bioc) converter. Integration of the JATS document structure is currently in progress. In the future, an API that returns the JATS section corresponding to a given annotation URI is planned. Additionally, annotations will be enhanced with RDF, including Nanopublication, to allow for the storage and retrieval of supplementary information.
+
 * [Hypothes.is](https://web.hypothes.is/)
 * [TeamTat](https://www.teamtat.org/)
 * [brat rapid annotation tool](http://brat.nlplab.org/index.html)
 * [Annotator](https://github.com/openannotation/annotator)
 
-# Example use-cases
+### EuropePMC
 
-Databases can have different requirements for referencing to specific text fragments in a publication dependent on the structure of a database entry and how annotations are added and referenced within the database. 
+Some words on the SciLite Annotations would be great here.
+
+# Example use-cases for granular biocuration
+
+Life science databases can have different requirements for referencing to specific text fragments in a publication dependent on the structure of a database entry and how annotations are added and referenced within the database. 
 
 #### IMEx
 
@@ -70,12 +112,12 @@ Databases can have different requirements for referencing to specific text fragm
 
 #### SABIO-RK
 
-> [SABIO-RK](https://sabiork.h-its.org/) is a manually curated database for biochemical reactions and their kinetic properties. Data are mainly manually extracted from literature. One database entry is referring to one publication, and one publication can produce more than one database entry. The content of a database entry (e.g. kinetic data, reaction participants, proteins, organism, temperature, pH) is highly distributed in different sections of a publication. Currently a database entry includes the overall publication as reference. The findability of the corresponding information on a sentence-level in the publication would guide database users and curators directly to the exact locations of all data of the entry.  
+> [SABIO-RK](https://sabiork.h-its.org/) is a manually curated database for biochemical reactions and their kinetic properties. Data are mainly manually extracted from literature. One database entry is referring to one publication, and one publication can produce more than one database entry. The content of a database entry (e.g. kinetic data, reaction participants, proteins, organism, temperature, pH) is highly distributed in different sections of a publication. Currently, a database entry includes the overall publication as reference. The findability of the corresponding information on a sentence-level in the publication would guide database users and curators directly to the exact locations of all data of the entry.  
 
 #### DisProt
 
 > [DisProt](https://disprot.org/) is a manually curated repository of Intrinsically Disordered Proteins. Each entry includes information about the corresponding literature reference along with relevant statements from the manuscript (when available), curator statements and cross references.
-Currently DisProt entries could contain manually added free text statements extracted from a publication and would benefit from a sentence-level reference.
+Currently, DisProt entries could contain manually added free text statements extracted from a publication and would benefit from a sentence-level reference.
 
 #### TogoMedium
 
@@ -83,29 +125,19 @@ Currently DisProt entries could contain manually added free text statements extr
 
 ####  BioSamples
 
-> use case
+> To annotate metagenome assemblies (MAGs), cell lines, etc. it would be useful to extract structured information from metadata in the BioSamples database written in free text. Many attributes are only written in the description or in the BioProject metadata. 
 
 # Technical implementation
 
 The technical implementation of our proposal relies on combining two existing technologies: URL text fragments and Nanopublications.
 
-URL text fragments allow you to link to a specific section of or selection in a web page by extending the URL of said web page. These extended URLs allow you to deep link to content within a page, rather than just linking to the top. This can be useful for linking directly to relevant information. When clicking on a link with a URL text fragment, the page will jump to the correct position without the need to reload the entire page. URL text fragments do not change the content of the URL, just the scroll position on load. The URL with and without the fragment references the same resource. Browser support is excellent as all major browsers support URL fragments. Ultimately, URL text framents allow for deeper linking within web pages.
+URL text fragments allows the linking of a specific section of or selection in a web page by extending the URL of said web page. These extended URLs enable one to deep link to content within a page, rather than just linking to the top. This can be useful for linking directly to relevant information. When clicking on a link with a URL text fragment, the page will jump to the correct position without the need to reload the entire page. URL text fragments do not change the content of the URL, just the scroll position on load. The URL with and without the fragment references the same resource. Browser support is excellent as all major browsers support URL fragments. Ultimately, URL text framents allow for deeper linking within web pages.
 
 Nanopublications are a way to publish scientific data and claims in a granular and machine-readable format. They are tiny units of publishable information, typically making a single scientific claim backed by data and provenance. Each nanopublication has a formal structure with three parts - the assertion, provenance, and publication information. This allows them to be machine-readable and makes it easier to verify claims. Nanopublications are designed to be conceptually small, so that many nanopublications together can precisely capture the full context and complexity of scientific research. They use semantic web standards like RDF to represent the relationships between concepts, allowing nanopublications to be integrated and reasoned over. Nanopublications can be (? I thought this was a must) cryptographically signed and assigned persistent identifiers to create a traceable record. The decentralized and granular nature allows individual nanopublications to be easily shared, cited, reused, retracted, etc. In summary, nanopublications provide a way to formally publish small data-backed claims that is designed to integrate with the semantic web and amplify the precision and transparency of scientific communication.
 
 * [Specification](https://wicg.github.io/scroll-to-text-fragment/)
 * [Supported by Chrome and Safari](https://caniuse.com/?search=text%20fragment)
 * [Supported by Firefox with an extension](https://addons.mozilla.org/en-US/firefox/addon/link-to-text-fragment/). Firefox should support the specification in the next versions.
-
-## Proof of concept
-
-### Browser extension
-
-### Web application
-
-Text fragment URLs can be generated as part of web applications which display publications. Within a search and reading tool for biocurators, we added a feature for generating text fragment URLs for user highlighted text. Text fragments can be trivially formatted using JavaScript.
-
-https://gitlab.ebi.ac.uk/mjj/biocuration-toolbox/-/commit/4c63c75fbd69181e99f017289285a7ceb740217a
 
 ## Human-readable Nanopublications specification
 
@@ -129,7 +161,17 @@ https://gitlab.ebi.ac.uk/mjj/biocuration-toolbox/-/commit/4c63c75fbd69181e99f017
 - This nanopublication is created by: ORCiD
 - This nanopublication is published under the license: CC-BY 4.0
 
-## SWOT analysis
+# Proof of concept
+
+### Browser extension
+
+### Web application
+
+Text fragment URLs can be generated as part of web applications which display publications. Within a search and reading tool for biocurators, we added a feature for generating text fragment URLs for user highlighted text. Text fragments can be trivially formatted using JavaScript.
+
+
+
+# SWOT analysis
 
 ### Strengths
 
@@ -141,6 +183,7 @@ https://gitlab.ebi.ac.uk/mjj/biocuration-toolbox/-/commit/4c63c75fbd69181e99f017
 - All Nanopubs for a given DOI can be collected to generate a new type of metric that complements the existing citation metrics
 - All Nanopubs for a given OA article can be overlaid by a resource like EuropePMC
 - The crediting of the biocurator is open, and can be aggregated by resources such as APICURON
+- All Nanopubs for given DOI can be shared between curators of different databases to exchange extracted and curated information 
 
 ## Weaknesses
 
@@ -150,6 +193,7 @@ https://gitlab.ebi.ac.uk/mjj/biocuration-toolbox/-/commit/4c63c75fbd69181e99f017
 ### Opportunities
 
 - Is the Nanopublication template going to include a link to the database or database entry?
+- A Nanopublication template could be used for pdf files for copy/paste text fragments
 
 ## Threats
 
@@ -166,7 +210,7 @@ Different approaches are facilitated: one Nanopub per DOI vs one Nanopub for mul
 
 ## Acknowledgements
 
-SA Marseille
+We thank Gavin Chait for the discussions on annotation tools. This work was supported by ELIXIR, the research infrastructure for life-science data.
 
 ## References
 
