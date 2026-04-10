@@ -4,7 +4,7 @@
 
 ## Preprint
 
-[BioHackEU23 report: Project 26: Literature Biocuration Practices and Guidelines](preprint.md)
+[BioHackEU23 report: Project 26: Literature Biocuration Practices and Guidelines](paper.md)
 
 ## Browser extension
 
